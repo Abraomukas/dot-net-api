@@ -1,2 +1,3 @@
-# dot-net-api
-Creating an API using .NET
+# Gaming API
+
+Creating a Gaming API using .NET
