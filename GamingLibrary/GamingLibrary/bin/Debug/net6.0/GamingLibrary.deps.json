@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "GamingLibrary/1.0.0": {
+        "dependencies": {
+          "GamingLibrary.Contracts": "1.0.0"
+        },
+        "runtime": {
+          "GamingLibrary.dll": {}
+        }
+      },
+      "GamingLibrary.Contracts/1.0.0": {
+        "runtime": {
+          "GamingLibrary.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "GamingLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "GamingLibrary.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,12 @@
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/bin/Debug/net6.0/GamingLibrary.Contracts.deps.json
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/bin/Debug/net6.0/GamingLibrary.Contracts.dll
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/bin/Debug/net6.0/ref/GamingLibrary.Contracts.dll
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/bin/Debug/net6.0/GamingLibrary.Contracts.pdb
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.csproj.AssemblyReference.cache
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.AssemblyInfoInputs.cache
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.AssemblyInfo.cs
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.csproj.CoreCompileInputs.cache
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.dll
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/ref/GamingLibrary.Contracts.dll
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary.Contracts/obj/Debug/net6.0/GamingLibrary.Contracts.pdb
