@@ -77,12 +77,30 @@ public class GamesController : ControllerBase
     [HttpPut("{id:guid}")]
     public IActionResult UpsertGame(Guid id, UpsertGameRequest request)
     {
-        return Ok(request);
+        var game = new Game(
+            id,
+            request.Name,
+            request.Description,
+            request.ReleaseYear,
+            request.Trophies,
+            request.HasPlatinumTrophy,
+            request.HasMultiplayerTrophies,
+            request.HasOnlineTrophies,
+            request.Genre,
+            request.Platform
+        );
+
+        _gameService.UpsertGame(game);
+
+        //TODO Return 201 if a new game was created
+        return NoContent();
     }
 
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteGame(Guid id)
     {
-        return Ok(id);
+        _gameService.DeleteGame(id);
+
+        return NoContent();
     }
 }

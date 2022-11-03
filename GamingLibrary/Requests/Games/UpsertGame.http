@@ -1,10 +1,10 @@
-@id=00000000-0000-0000-0000-000000000000
+@id=5b6f725e-76ab-4a42-866f-f00b8327d464
 
 PUT http://localhost:5117/games/{{id}}
 Content-Type: application/json
 
 {
-	"name": "Final Fantasy IX",
+	"name": "Final Fantasy 9",
 	"description": "A band of thieves are hired to kidnap Princess Garnet of Alexandria. After they succeed, they end up becoming her guardians. And while protecting the fair Princess from a powerful evil...they hold the fate of the world in their hands. Play along on the epic journey filled with danger, mystery, war and love.",
 	"releaseYear": "2000",
     "trophies": "52",

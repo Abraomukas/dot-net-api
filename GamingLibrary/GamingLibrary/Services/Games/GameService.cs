@@ -11,6 +11,16 @@ public class GameService : IGameService
         _games.Add(game.Id, game);
     }
 
+    public void UpsertGame(Game game)
+    {
+        _games[game.Id] = game;
+    }
+
+    public void DeleteGame(Guid id)
+    {
+        _games.Remove(id);
+    }
+
     public Game GetGame(Guid id)
     {
         return _games[id];
