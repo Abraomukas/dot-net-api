@@ -22,3 +22,4 @@
 /home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary/obj/Debug/net6.0/ref/GamingLibrary.dll
 /home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary/obj/Debug/net6.0/GamingLibrary.pdb
 /home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary/obj/Debug/net6.0/GamingLibrary.genruntimeconfig.cache
+/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary/bin/Debug/net6.0/ErrorOr.dll

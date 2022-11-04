@@ -1,8 +1,10 @@
 using GamingLibrary.Contracts.GamingLibrary;
 using GamingLibrary.Models;
 using GamingLibrary.Services.Games;
+using GamingLibrary.ServiceErrors;
 
 using Microsoft.AspNetCore.Mvc;
+using ErrorOr;
 
 namespace GamingLibrary.Controllers;
 
@@ -57,9 +59,25 @@ public class GamesController : ControllerBase
     [HttpGet("{id:guid}")]
     public IActionResult GetGame(Guid id)
     {
-        Game game = _gameService.GetGame(id);
+        ErrorOr<Game> getGameResult = _gameService.GetGame(id);
 
-        var response = new GameResponse(
+        return getGameResult.Match(breakfast => Ok(MapGameResponse(breakfast)), errors => Problem());
+
+        // if (getGameResult.IsError && getGameResult.FirstError == Errors.Game.NotFound)
+        // {
+        //     return NotFound();
+        // }
+
+        // var game = getGameResult.Value;
+
+        // GameResponse response = MapGameResponse(game);
+
+        // return Ok(response);
+    }
+
+    private static GameResponse MapGameResponse(Game game)
+    {
+        return new GameResponse(
             game.Id,
             game.Name,
             game.Description,
@@ -70,8 +88,6 @@ public class GamesController : ControllerBase
             game.HasOnlineTrophies,
             game.Genre,
             game.Platform);
-
-        return Ok(response);
     }
 
     [HttpPut("{id:guid}")]

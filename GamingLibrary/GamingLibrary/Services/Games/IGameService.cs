@@ -1,5 +1,7 @@
 using GamingLibrary.Models;
 
+using ErrorOr;
+
 namespace GamingLibrary.Services.Games;
 
 public interface IGameService
@@ -10,5 +12,5 @@ public interface IGameService
 
     void DeleteGame(Guid id);
 
-    Game GetGame(Guid id);
+    ErrorOr<Game> GetGame(Guid id);
 }

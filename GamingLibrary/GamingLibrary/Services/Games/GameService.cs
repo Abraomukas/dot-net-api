@@ -1,4 +1,7 @@
 using GamingLibrary.Models;
+using GamingLibrary.ServiceErrors;
+
+using ErrorOr;
 
 namespace GamingLibrary.Services.Games;
 
@@ -21,8 +24,13 @@ public class GameService : IGameService
         _games.Remove(id);
     }
 
-    public Game GetGame(Guid id)
+    public ErrorOr<Game> GetGame(Guid id)
     {
-        return _games[id];
+        if (_games.TryGetValue(id, out var game))
+        {
+            return _games[id];
+        }
+
+        return Errors.Game.NotFound;
     }
 }

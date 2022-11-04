@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "4NlzRAPGfvdlddCf3krWx81Byl1qMISddq9dlhiizLU5X8P+jjh07Q0zC/R+kj5AluKyY5GlT2T975mt4GFkvg==",
+  "dgSpecHash": "r+LLm/daTY/OuudLXqIzXXTxkWQjwiB4vm2JxOBa+TFfPOyRx0RfTA5NL1axcsiCUyLpgopl2Sp84MKv0Ot03A==",
   "success": true,
   "projectFilePath": "/home/abraomukas/Documents/Coding/freeCodeCamp/.NET/dot-net-api/GamingLibrary/GamingLibrary/GamingLibrary.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/abraomukas/.nuget/packages/erroror/1.0.1/erroror.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }
