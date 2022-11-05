@@ -8,9 +8,7 @@ using ErrorOr;
 
 namespace GamingLibrary.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class GamesController : ControllerBase
+public class GamesController : ApiController
 {
     private readonly IGameService _gameService;
 
@@ -61,18 +59,7 @@ public class GamesController : ControllerBase
     {
         ErrorOr<Game> getGameResult = _gameService.GetGame(id);
 
-        return getGameResult.Match(breakfast => Ok(MapGameResponse(breakfast)), errors => Problem());
-
-        // if (getGameResult.IsError && getGameResult.FirstError == Errors.Game.NotFound)
-        // {
-        //     return NotFound();
-        // }
-
-        // var game = getGameResult.Value;
-
-        // GameResponse response = MapGameResponse(game);
-
-        // return Ok(response);
+        return getGameResult.Match(breakfast => Ok(MapGameResponse(breakfast)), errors => Problem(errors));
     }
 
     private static GameResponse MapGameResponse(Game game)
