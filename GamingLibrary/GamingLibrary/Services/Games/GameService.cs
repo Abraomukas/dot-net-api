@@ -9,19 +9,26 @@ public class GameService : IGameService
 {
     private static readonly Dictionary<Guid, Game> _games = new();
 
-    public void CreateGame(Game game)
+    public ErrorOr<Created> CreateGame(Game game)
     {
         _games.Add(game.Id, game);
+
+        return Result.Created;
     }
 
-    public void UpsertGame(Game game)
+    public ErrorOr<UpsertedGame> UpsertGame(Game game)
     {
+        var IsNewlyCreated = !_games.ContainsKey(game.Id);
         _games[game.Id] = game;
+
+        return new UpsertedGame(IsNewlyCreated);
     }
 
-    public void DeleteGame(Guid id)
+    public ErrorOr<Deleted> DeleteGame(Guid id)
     {
         _games.Remove(id);
+
+        return Result.Deleted;
     }
 
     public ErrorOr<Game> GetGame(Guid id)

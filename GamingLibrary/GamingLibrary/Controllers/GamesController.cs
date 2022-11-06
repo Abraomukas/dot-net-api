@@ -33,25 +33,11 @@ public class GamesController : ApiController
             request.Platform
         );
 
-        _gameService.CreateGame(game);
+        ErrorOr<Created> createGameResult = _gameService.CreateGame(game);
 
-        var response = new GameResponse(
-            game.Id,
-            game.Name,
-            game.Description,
-            game.ReleaseYear,
-            game.Trophies,
-            game.HasPlatinumTrophy,
-            game.HasMultiplayerTrophies,
-            game.HasOnlineTrophies,
-            game.Genre,
-            game.Platform
-        );
-
-        return CreatedAtAction(
-            actionName: nameof(GetGame),
-            routeValues: new { id = game.Id },
-            value: response);
+        return createGameResult.Match(
+            created => CreatedAtGetGame(game),
+            errors => Problem(errors));
     }
 
     [HttpGet("{id:guid}")]
@@ -60,21 +46,6 @@ public class GamesController : ApiController
         ErrorOr<Game> getGameResult = _gameService.GetGame(id);
 
         return getGameResult.Match(breakfast => Ok(MapGameResponse(breakfast)), errors => Problem(errors));
-    }
-
-    private static GameResponse MapGameResponse(Game game)
-    {
-        return new GameResponse(
-            game.Id,
-            game.Name,
-            game.Description,
-            game.ReleaseYear,
-            game.Trophies,
-            game.HasPlatinumTrophy,
-            game.HasMultiplayerTrophies,
-            game.HasOnlineTrophies,
-            game.Genre,
-            game.Platform);
     }
 
     [HttpPut("{id:guid}")]
@@ -93,17 +64,41 @@ public class GamesController : ApiController
             request.Platform
         );
 
-        _gameService.UpsertGame(game);
+        ErrorOr<UpsertedGame> upsertGameResult = _gameService.UpsertGame(game);
 
-        //TODO Return 201 if a new game was created
-        return NoContent();
+        return upsertGameResult.Match(
+            upserted => upserted.IsNewlyCreated ? CreatedAtGetGame(game) : NoContent(),
+            errors => Problem(errors));
     }
 
     [HttpDelete("{id:guid}")]
     public IActionResult DeleteGame(Guid id)
     {
-        _gameService.DeleteGame(id);
+        ErrorOr<Deleted> deletedGameResult = _gameService.DeleteGame(id);
 
-        return NoContent();
+        return deletedGameResult.Match(deleted => NoContent(), errors => Problem(errors));
+    }
+
+    private static GameResponse MapGameResponse(Game game)
+    {
+        return new GameResponse(
+            game.Id,
+            game.Name,
+            game.Description,
+            game.ReleaseYear,
+            game.Trophies,
+            game.HasPlatinumTrophy,
+            game.HasMultiplayerTrophies,
+            game.HasOnlineTrophies,
+            game.Genre,
+            game.Platform);
+    }
+
+    private CreatedAtActionResult CreatedAtGetGame(Game game)
+    {
+        return CreatedAtAction(
+            actionName: nameof(GetGame),
+            routeValues: new { id = game.Id },
+            value: MapGameResponse(game));
     }
 }

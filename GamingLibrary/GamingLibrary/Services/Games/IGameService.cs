@@ -6,11 +6,11 @@ namespace GamingLibrary.Services.Games;
 
 public interface IGameService
 {
-    void CreateGame(Game game);
+    ErrorOr<Created> CreateGame(Game game);
 
-    void UpsertGame(Game game);
+    ErrorOr<UpsertedGame> UpsertGame(Game game);
 
-    void DeleteGame(Guid id);
+    ErrorOr<Deleted> DeleteGame(Guid id);
 
     ErrorOr<Game> GetGame(Guid id);
 }
