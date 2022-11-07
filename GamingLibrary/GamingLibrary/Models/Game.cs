@@ -1,7 +1,13 @@
+using ErrorOr;
+using GamingLibrary.ServiceErrors;
+
 namespace GamingLibrary.Models;
 
 public class Game
 {
+
+    public const int MinListLength = 1;
+    public const int MaxDescriptionLength = 100;
     public Guid Id { get; }
 
     public string Name { get; }
@@ -22,7 +28,7 @@ public class Game
 
     public List<string> Platform { get; }
 
-    public Game(
+    private Game(
         Guid id,
         string name,
         string description,
@@ -34,7 +40,6 @@ public class Game
         List<string> genre,
         List<string> platform)
     {
-        // Enforce invariants
         Id = id;
         Name = name;
         Description = description;
@@ -45,5 +50,46 @@ public class Game
         HasOnlineTrophies = hasOnlineTrophies;
         Genre = genre;
         Platform = platform;
+    }
+
+    public static ErrorOr<Game> Create(
+        string name,
+        string description,
+        string releaseYear,
+        int trophies,
+        bool hasPlatinumTrophy,
+        bool hasMultiplayerTrophies,
+        bool hasOnlineTrophies,
+        List<string> genre,
+        List<string> platform)
+    {
+        List<Error> errors = new();
+
+        if (genre.Count is < MinListLength)
+        {
+            errors.Add(Errors.Game.GenreListError);
+        }
+
+        if (platform.Count is < MinListLength)
+        {
+            errors.Add(Errors.Game.PlatformListError);
+        }
+
+        if (errors.Count is > 0)
+        {
+            return errors;
+        }
+
+        return new Game(
+            Guid.NewGuid(),
+            name,
+            description,
+            releaseYear,
+            trophies,
+            hasPlatinumTrophy,
+            hasMultiplayerTrophies,
+            hasOnlineTrophies,
+            genre,
+            platform);
     }
 }
