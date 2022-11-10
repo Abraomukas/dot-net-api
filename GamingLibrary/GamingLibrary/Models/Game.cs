@@ -61,7 +61,8 @@ public class Game
         bool hasMultiplayerTrophies,
         bool hasOnlineTrophies,
         List<string> genre,
-        List<string> platform)
+        List<string> platform,
+        Guid? id = null)
     {
         List<Error> errors = new();
 
@@ -81,7 +82,7 @@ public class Game
         }
 
         return new Game(
-            Guid.NewGuid(),
+            id ?? Guid.NewGuid(),
             name,
             description,
             releaseYear,

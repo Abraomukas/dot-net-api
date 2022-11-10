@@ -20,8 +20,7 @@ public class GamesController : ApiController
     [HttpPost]
     public IActionResult CreateGame(CreateGameRequest request)
     {
-        var game = new Game(
-            Guid.NewGuid(),
+        ErrorOr<Game> requestToGameResult = Game.Create(
             request.Name,
             request.Description,
             request.ReleaseYear,
@@ -30,9 +29,14 @@ public class GamesController : ApiController
             request.HasMultiplayerTrophies,
             request.HasOnlineTrophies,
             request.Genre,
-            request.Platform
-        );
+            request.Platform);
 
+        if (requestToGameResult.IsError)
+        {
+            return Problem(requestToGameResult.Errors);
+        }
+
+        var game = requestToGameResult.Value;
         ErrorOr<Created> createGameResult = _gameService.CreateGame(game);
 
         return createGameResult.Match(
@@ -51,8 +55,7 @@ public class GamesController : ApiController
     [HttpPut("{id:guid}")]
     public IActionResult UpsertGame(Guid id, UpsertGameRequest request)
     {
-        var game = new Game(
-            id,
+        ErrorOr<Game> requestToGameResult = Game.Create(
             request.Name,
             request.Description,
             request.ReleaseYear,
@@ -61,9 +64,16 @@ public class GamesController : ApiController
             request.HasMultiplayerTrophies,
             request.HasOnlineTrophies,
             request.Genre,
-            request.Platform
+            request.Platform,
+            id
         );
 
+        if (requestToGameResult.IsError)
+        {
+            return Problem(requestToGameResult.Errors);
+        }
+
+        var game = requestToGameResult.Value;
         ErrorOr<UpsertedGame> upsertGameResult = _gameService.UpsertGame(game);
 
         return upsertGameResult.Match(
