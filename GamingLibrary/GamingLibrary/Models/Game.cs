@@ -1,5 +1,6 @@
 using ErrorOr;
 using GamingLibrary.ServiceErrors;
+using GamingLibrary.Contracts.GamingLibrary;
 
 namespace GamingLibrary.Models;
 
@@ -92,5 +93,34 @@ public class Game
             hasOnlineTrophies,
             genre,
             platform);
+    }
+
+    public static ErrorOr<Game> From(CreateGameRequest request)
+    {
+        return Create(
+            request.Name,
+            request.Description,
+            request.ReleaseYear,
+            request.Trophies,
+            request.HasPlatinumTrophy,
+            request.HasMultiplayerTrophies,
+            request.HasOnlineTrophies,
+            request.Genre,
+            request.Platform);
+    }
+
+    public static ErrorOr<Game> From(Guid id, UpsertGameRequest request)
+    {
+        return Create(
+            request.Name,
+            request.Description,
+            request.ReleaseYear,
+            request.Trophies,
+            request.HasPlatinumTrophy,
+            request.HasMultiplayerTrophies,
+            request.HasOnlineTrophies,
+            request.Genre,
+            request.Platform,
+            id);
     }
 }

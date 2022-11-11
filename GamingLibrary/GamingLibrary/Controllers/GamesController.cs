@@ -20,16 +20,7 @@ public class GamesController : ApiController
     [HttpPost]
     public IActionResult CreateGame(CreateGameRequest request)
     {
-        ErrorOr<Game> requestToGameResult = Game.Create(
-            request.Name,
-            request.Description,
-            request.ReleaseYear,
-            request.Trophies,
-            request.HasPlatinumTrophy,
-            request.HasMultiplayerTrophies,
-            request.HasOnlineTrophies,
-            request.Genre,
-            request.Platform);
+        ErrorOr<Game> requestToGameResult = Game.From(request);
 
         if (requestToGameResult.IsError)
         {
@@ -55,18 +46,7 @@ public class GamesController : ApiController
     [HttpPut("{id:guid}")]
     public IActionResult UpsertGame(Guid id, UpsertGameRequest request)
     {
-        ErrorOr<Game> requestToGameResult = Game.Create(
-            request.Name,
-            request.Description,
-            request.ReleaseYear,
-            request.Trophies,
-            request.HasPlatinumTrophy,
-            request.HasMultiplayerTrophies,
-            request.HasOnlineTrophies,
-            request.Genre,
-            request.Platform,
-            id
-        );
+        ErrorOr<Game> requestToGameResult = Game.From(id, request);
 
         if (requestToGameResult.IsError)
         {
